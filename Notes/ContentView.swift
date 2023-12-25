@@ -11,6 +11,7 @@ struct ContentView: View {
     @StateObject private var viewModel = TaskViewModel()
     var body: some View {
             HomeView(viewModel: viewModel)
+            .environmentObject(viewModel)
         
             
     }

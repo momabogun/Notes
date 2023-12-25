@@ -10,21 +10,23 @@ import CoreData
 
 struct PersistentStore{
     
-    static var shared = PersistentStore()
+    static let shared = PersistentStore()
     
     private let myData : NSPersistentContainer
-    var context : NSManagedObjectContext {
-        myData.viewContext
-    }
+   
     
     init() {
         myData = NSPersistentContainer(name: "TasksData")
-        context.automaticallyMergesChangesFromParent = true
+        myData.viewContext.automaticallyMergesChangesFromParent = true
         myData.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Error loading Core Data: \(error), \(error.userInfo)")
             }
         }
+    }
+    
+    var context : NSManagedObjectContext {
+        myData.viewContext
     }
     
     func save() {

@@ -11,6 +11,8 @@ struct NewNotesView: View {
     @EnvironmentObject var viewModel: TaskViewModel
     @State var title : String = ""
     @State var text: String = ""
+    @State var prio: Prio = Prio.low
+    @Binding var isOpened: Bool
     var body: some View {
         NavigationStack{
             VStack{
@@ -24,12 +26,20 @@ struct NewNotesView: View {
                             
                         
                     }
+                    Section("Priority of task"){
+                            Picker("Priority: ", selection: $prio){
+                                ForEach(Prio.allCases, id: \.self){ prio in
+                                    Text(prio.rawValue.capitalized)
+                                }
+                            }
+                        }
                 }
             }.navigationTitle("New Notes").navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        viewModel.saveTask(title: title, text: text)
+                        viewModel.saveTask(title: title, text: text, prio: prio.rawValue)
+                        isOpened.toggle()
                     }) {
                         Text("Done")
                     }

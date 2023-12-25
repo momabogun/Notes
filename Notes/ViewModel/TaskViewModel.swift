@@ -8,17 +8,22 @@
 import Foundation
 import CoreData
 class TaskViewModel: ObservableObject{
-    @Published var tasks : [Task] = []
     
-    let mydata = PersistentStore.shared
     
     init(){
         fetchTasks()
     }
     
     
+    @Published var tasks : [Task] = []
+    
+    let mydata = PersistentStore.shared
+    
+   
+    
+    
     func fetchTasks(){
-        let request : NSFetchRequest<Task> = Task.fetchRequest()
+        let request = NSFetchRequest<Task>(entityName: "Task")
         
         do {
             tasks = try mydata.context.fetch(request)
@@ -28,13 +33,16 @@ class TaskViewModel: ObservableObject{
     }
     
     
-    func saveTask(title: String, text: String, date: Date = Date()) {
+    func saveTask(title: String, text: String, prio: Prio.RawValue) {
         let newTask = Task(context: mydata.context)
         newTask.id = UUID()
         newTask.title = title
         newTask.text = text
         newTask.status = false
+        newTask.date = Date()
+        newTask.prio = prio
         mydata.save()
+        fetchTasks()
     }
     
     func updateTask(_ task: Task, with title: String){

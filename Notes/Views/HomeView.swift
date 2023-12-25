@@ -16,24 +16,25 @@ struct HomeView: View {
                 
                 Form{
                     Section("Tasks"){
-                        List(viewModel.tasks){ task in
-                            Text(task.title!)
-                            
+                        List(viewModel.tasks, id: \.id){ task in
+                            NavigationLink(destination: TaskScreen(task: task)){
+                                TaskView(task: task)
+                            }
                         }
+                        
                         
                         
                     }
                 }
             }.sheet(isPresented: $isOpened){
-                NewNotesView()
+                NewNotesView(isOpened: $isOpened)
+                    .presentationDetents([.medium,.large])
                     
             }.navigationTitle("Notes")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        // Action performed when the button is tapped
                         isOpened.toggle()
-                        print("Button tapped")
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.title)
@@ -43,6 +44,7 @@ struct HomeView: View {
                 }
         }
     }
+    
 }
 
 
