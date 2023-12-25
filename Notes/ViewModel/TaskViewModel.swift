@@ -12,9 +12,12 @@ class TaskViewModel: ObservableObject{
     
     let mydata = PersistentStore.shared
     
+    init(){
+        fetchTasks()
+    }
     
     
-    private func fetchTasks(){
+    func fetchTasks(){
         let request : NSFetchRequest<Task> = Task.fetchRequest()
         
         do {
@@ -25,6 +28,27 @@ class TaskViewModel: ObservableObject{
     }
     
     
-    private func addTask(title: String, text: String, status: Bool = false, date: Date = Date(),)
+    func saveTask(title: String, text: String, date: Date = Date()) {
+        let newTask = Task(context: mydata.context)
+        newTask.id = UUID()
+        newTask.title = title
+        newTask.text = text
+        newTask.status = false
+        mydata.save()
+    }
+    
+    func updateTask(_ task: Task, with title: String){
+        task.title = title
+        mydata.save()
+        fetchTasks()
+    }
+    
+    func deleteTask(_ task: Task){
+        mydata.context.delete(task)
+        mydata.save()
+        fetchTasks()
+    }
+    
+    
     
 }
