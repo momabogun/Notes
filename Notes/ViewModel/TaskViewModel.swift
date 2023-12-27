@@ -45,8 +45,10 @@ class TaskViewModel: ObservableObject{
         fetchTasks()
     }
     
-    func updateTask(_ task: Task, with title: String){
-        task.title = title
+    func updateTask(_ task: Task, with text: String, with prio: String){
+        task.text = text
+        task.prio = prio
+        task.date = Date()
         mydata.save()
         fetchTasks()
     }

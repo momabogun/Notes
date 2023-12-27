@@ -10,24 +10,38 @@ import SwiftUI
 struct TaskScreen: View {
     @EnvironmentObject var viewModel: TaskViewModel
     @State private var isEditing = false
-    @State private var selectedPriority: String = ""
-    @State private var editedText = ""
+    @State var prio: Prio
+    @State private var editedText :String
     let task: Task
+    
+    init(task: Task) {
+            self.task = task
+            _editedText = State(initialValue: task.text ?? "")
+        _prio = State(initialValue: Prio(rawValue: task.prio ?? "low") ?? .low)
+        }
+
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading){
                 if isEditing {
-                    TextField("Title", text: $editedText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
                     
-                    Picker("Priority", selection: $selectedPriority) {
-                        Text("Low").tag("low")
-                        Text("Medium").tag("medium")
-                        Text("High").tag("high")
+                    TextEditor(text: $editedText)
+                                        .frame(maxHeight: .infinity)
+                    
+                        
+                    Form{
+                        Section("Priority"){
+                            Picker("Priority: ", selection: $prio){
+                                ForEach(Prio.allCases, id: \.self){ prio in
+                                    Text(prio.rawValue.capitalized)
+                                }
+                                
+                            }.pickerStyle(WheelPickerStyle())
+                        }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
+                        
+                    
+                    
                 } 
                 else{
                     
@@ -52,8 +66,7 @@ struct TaskScreen: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         if isEditing {
-                            task.prio = selectedPriority
-                            viewModel.updateTask(task, with: editedText)
+                            viewModel.updateTask(task, with: editedText, with: prio.rawValue)
                         }
                         isEditing.toggle()
                     }) {
