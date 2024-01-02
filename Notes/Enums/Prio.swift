@@ -14,6 +14,18 @@ enum Prio: String, Hashable, Identifiable, CaseIterable {
     var id: String {rawValue}
     
     
+    var title : String{
+        switch self{
+            
+        case .low:
+            "Low"
+        case .medium:
+            "Medium"
+        case .high:
+            "High"
+        }
+    }
+    
     var color: Color {
         switch self{
             

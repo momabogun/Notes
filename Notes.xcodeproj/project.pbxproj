@@ -19,6 +19,8 @@
 		21CD21892B38AB1200AC85D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD21882B38AB1200AC85D7 /* ContentView.swift */; };
 		21CD218B2B38AB1200AC85D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21CD218A2B38AB1200AC85D7 /* Assets.xcassets */; };
 		21CD218E2B38AB1200AC85D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21CD218D2B38AB1200AC85D7 /* Preview Assets.xcassets */; };
+		21FADB1B2B3D745B00750392 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FADB1A2B3D745B00750392 /* SplashScreenView.swift */; };
+		21FADB1D2B3D751600750392 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FADB1C2B3D751600750392 /* ContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		21CD21882B38AB1200AC85D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		21CD218A2B38AB1200AC85D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21CD218D2B38AB1200AC85D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		21FADB1A2B3D745B00750392 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		21FADB1C2B3D751600750392 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 		21CD21852B38AB1200AC85D7 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				21FADB192B3D744700750392 /* SplashScreen */,
 				210A61F22B39B80100A94414 /* Views */,
 				210A61F12B39B7FA00A94414 /* ViewModel */,
 				210A61F02B39B7F500A94414 /* Data */,
@@ -118,6 +123,7 @@
 				210A61EE2B39B7C800A94414 /* Model */,
 				21CD21862B38AB1200AC85D7 /* NotesApp.swift */,
 				21CD21882B38AB1200AC85D7 /* ContentView.swift */,
+				21FADB1C2B3D751600750392 /* ContainerView.swift */,
 				21CD218A2B38AB1200AC85D7 /* Assets.xcassets */,
 				21CD218C2B38AB1200AC85D7 /* Preview Content */,
 			);
@@ -130,6 +136,14 @@
 				21CD218D2B38AB1200AC85D7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		21FADB192B3D744700750392 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				21FADB1A2B3D745B00750392 /* SplashScreenView.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,9 +220,11 @@
 				210A61FD2B39BB7C00A94414 /* TasksData.xcdatamodeld in Sources */,
 				212FC6502B39C1D700177B77 /* HomeView.swift in Sources */,
 				210A61FF2B39BCCB00A94414 /* TaskViewModel.swift in Sources */,
+				21FADB1B2B3D745B00750392 /* SplashScreenView.swift in Sources */,
 				212FC6522B39C7F100177B77 /* NewNotesView.swift in Sources */,
 				21CD21892B38AB1200AC85D7 /* ContentView.swift in Sources */,
 				210A61F92B39BAA200A94414 /* PersistentStore.swift in Sources */,
+				21FADB1D2B3D751600750392 /* ContainerView.swift in Sources */,
 				21CD21872B38AB1200AC85D7 /* NotesApp.swift in Sources */,
 				21B547AA2B3A12FE000721B6 /* TaskScreen.swift in Sources */,
 				210A61F72B39B87C00A94414 /* Prio.swift in Sources */,

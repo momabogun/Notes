@@ -17,13 +17,45 @@ class TaskViewModel: ObservableObject{
     
     @Published var tasks : [Task] = []
     
+    @Published var search = ""
+    
     let mydata = PersistentStore.shared
+
     
    
     
     
     func fetchTasks(){
         let request = NSFetchRequest<Task>(entityName: "Task")
+        
+        do {
+            tasks = try mydata.context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch tasks: \(error)")
+        }
+    }
+    
+    
+    func fetchSearchTasks(){
+        guard !search.isEmpty else{
+            fetchTasks()
+            return
+        }
+        let request = NSFetchRequest<Task>(entityName: "Task")
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", search)
+        
+        do {
+            tasks = try mydata.context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch tasks: \(error)")
+        }
+    }
+    
+    
+    func fetchSearchPrio(_ prio: String){
+       
+        let request = NSFetchRequest<Task>(entityName: "Task")
+        request.predicate = NSPredicate(format: "prio == %@", prio)
         
         do {
             tasks = try mydata.context.fetch(request)

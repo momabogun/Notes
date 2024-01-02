@@ -42,7 +42,7 @@ struct NewNotesView: View {
                         isOpened.toggle()
                     }) {
                         Text("Done")
-                    }
+                    }.disabled(title.isEmpty)
                 }
                     
                 }
